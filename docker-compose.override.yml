@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  sp-web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:80
+      - CamundaEngineUrl=http://camunda:8080/engine-rest/
+    ports:
+      - "51841:80"
+
+  sp.hotelbooking.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+
+  sp.flightbooking.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+
+  sp.carbooking.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+
+  camunda:
+    ports:
+      - "8080:8080"

@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  sp-web:
+    image: ${DOCKER_REGISTRY-}spweb
+    build:
+      context: .
+      dockerfile: src/Sp.WebApp/Sp.Web/Dockerfile
+    depends_on:
+      - camunda
+
+  sp.hotelbooking.api:
+    image: ${DOCKER_REGISTRY-}sphotelbookingapi
+    build:
+      context: .
+      dockerfile: src/Sp.Services/Sp.HotelBooking/Sp.HotelBooking.Api/Dockerfile
+    depends_on:
+      - camunda
+
+
+  sp.flightbooking.api:
+    image: ${DOCKER_REGISTRY-}spflightbookingapi
+    build:
+      context: .
+      dockerfile: src/Sp.Services/Sp.FlightBooking/Sp.FlightBooking.Api/Dockerfile
+    depends_on:
+      - camunda
+
+
+  sp.carbooking.api:
+    image: ${DOCKER_REGISTRY-}spcarbookingapi
+    build:
+      context: .
+      dockerfile: src/Sp.Services/Sp.CarBooking/Sp.CarBooking.Api/Dockerfile
+    depends_on:
+      - camunda
+
+  camunda:
+    image: camunda/camunda-bpm-platform:latest
+

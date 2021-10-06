@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["172.18.0.3","172.18.0.4","172.18.0.5"],"port":443,"protocol":"HTTPS","serviceName":"saga-project:camunda","ingressName":"saga-project:camunda-ingress","hostname":"camunda.localhost","path":"/camunda","allNodes":false}]'
+  name: camunda-ingress
+spec:
+  rules:
+  - host: camunda.localhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: camunda
+            port:
+              number: 8080
+        path: /camunda
+        pathType: Prefix
+  tls:
+  - hosts:
+    - camunda.localhost

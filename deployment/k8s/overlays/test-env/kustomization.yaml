@@ -1,0 +1,28 @@
+# apiVersion and kind of Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+- ../../base
+
+# Adds namespace to all resources.
+namespace: saga-project
+
+  
+# Each entry in this list must resolve to an existing
+# resource definition in YAML.  These are the resource
+# files that kustomize reads, modifies and emits as a
+# YAML string, with resources separated by document
+# markers ("---").
+resources:
+#Namespaces
+- ./namespaces/sp-namespace.yaml
+#Secrets
+#ConfigMaps
+#Pvc
+#Stateful sets
+#Deployments
+# Ingresses
+- ./ingresses/saga-web-ingress.yaml
+- ./ingresses/camunda-ingress.yaml
+ 

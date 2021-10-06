@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["172.18.0.3","172.18.0.4","172.18.0.5"],"port":443,"protocol":"HTTPS","serviceName":"saga-project:saga-web","ingressName":"saga-project:saga-web-ingress","hostname":"saga-project.localhost","path":"/","allNodes":false}]'
+  name: saga-web-ingress
+spec:
+  rules:
+  - host: saga-project.localhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: saga-web
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - saga-project.localhost
+

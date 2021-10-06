@@ -1,0 +1,19 @@
+{
+  /**
+        This file overrides settings of Cc.configuration.json for ASPNETCORE_ENVIRONMENT=Release
+    */
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cc-productstock-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/productstock/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ]
+}
